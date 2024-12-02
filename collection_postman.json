@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "Microservices Damae Backend Test",
+    "_postman_id": "b5f1eac5-1234-5678-9101-abcdef123456",
+    "description": "Collection pour tester les services de téléchargement et de traitement d'images",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Service 1 - Upload Image",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/upload",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["upload"]
+        },
+        "description": "Upload an image to Service 1"
+      },
+      "response": []
+    },
+    {
+      "name": "Service 1 - Get Image",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/image/{{filename}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["image", "{{filename}}"]
+        },
+        "description": "Retrieve an image from Service 1 by filename"
+      },
+      "response": []
+    },
+    {
+      "name": "Service 2 - Process Image (Blur)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"filename\": \"{{filename}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/process",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["process"]
+        },
+        "description": "Send a filename to Service 2 to apply a blur effect"
+      },
+      "response": []
+    }
+  ]
+}
