@@ -58,7 +58,14 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 1. Clonez le dépôt :
    ```bash
-   git clone <URL_DU_DEPOT>
+   # SSH
+   git clone git@github.com:rpuccine/damae-backend-test.git
+   cd damae-backend-test
+   ```
+
+    ```bash
+   # HTTPS
+   git clone https://github.com/rpuccine/damae-backend-test.git
    cd damae-backend-test
    ```
    
@@ -136,13 +143,13 @@ curl -X POST -F "image=@path_to_image.jpg" http://localhost:3000/upload
 
 #### 2. Récupération d'une image via Service 1
 ```bash
-curl http://localhost:3000/image/<filename> --output original_image.jpg
+curl http://localhost:3000/image/<uploaded_image_filename> --output original_image.jpg
 ```
 
 #### 3. Floutage d'une image via Service 2
 ```bash
 curl -X POST -H "Content-Type: application/json" \
--d '{"filename": "your_uploaded_image_filename"}' \
+-d '{"filename": "uploaded_image_filename"}' \
 http://localhost:4000/process --output blurred_image.png
 ```
 
